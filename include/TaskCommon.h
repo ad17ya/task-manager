@@ -10,7 +10,7 @@ enum enStatus
 };
 
 
-#define LOG(level, message) \ 
+#define LOG(level, message) \
     Logger::getInstance().log(level, message, __FILE__, __LINE__)
 
 #define LOG_DEBUG(msg)      LOG(enLogLevel::DEBUG, msg)
