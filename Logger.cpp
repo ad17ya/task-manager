@@ -47,4 +47,3 @@ void Logger::log(enLogLevel level, const std::string& message, const char* file,
         << file << ":" << line << " - "
         << message << std::endl;
 }
-

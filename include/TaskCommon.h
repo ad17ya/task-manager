@@ -1,4 +1,6 @@
 #pragma once
+#include <sstream>
+
 #include "Logger.h"
 
 enum enStatus
@@ -9,8 +11,12 @@ enum enStatus
     enInvalid
 };
 
-#define LOG(level, message) \
-    Logger::getInstance().log(level, message, __FILE__, __LINE__)
+#define LOG(level, streamExpr) \
+    do {                                                        \
+        std::stringstream ss__;                                 \
+        ss__ << streamExpr;                                     \
+        Logger::getInstance().log(level, ss__.str(), __FILE__, __LINE__); \
+    } while (0)
 
 #define LOG_DEBUG(msg)      LOG(enLogLevel::DEBUG, msg)
 #define LOG_INFO(msg)      LOG(enLogLevel::INFO, msg)
