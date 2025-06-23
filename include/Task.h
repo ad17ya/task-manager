@@ -14,8 +14,6 @@ private:
 
 public:
     int getID() const;
-
-    void setName(const std::string& sName);
     std::string getName() const;
 
     void setStatus(const enStatus eStatus);

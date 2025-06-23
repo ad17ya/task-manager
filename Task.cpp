@@ -13,11 +13,6 @@ int Task::getID() const
     return m_nID;
 }
 
-void Task::setName(const std::string& sName)
-{
-    m_sName = sName;
-}
-
 std::string Task::getName() const
 {
     return m_sName;
