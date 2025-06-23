@@ -4,6 +4,7 @@
 #include <mutex>
 #include <string>
 #include <ctime>
+#include <unordered_map>
 
 enum class enLogLevel
 {
@@ -27,6 +28,5 @@ private:
     std::mutex m_mLogMutex;
     enLogLevel m_eLogLevel;
 
-    std::string levelToString(enLogLevel level);
     std::string timestamp();
 };

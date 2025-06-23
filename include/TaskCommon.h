@@ -9,7 +9,6 @@ enum enStatus
     enInvalid
 };
 
-
 #define LOG(level, message) \
     Logger::getInstance().log(level, message, __FILE__, __LINE__)
 

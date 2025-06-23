@@ -1,15 +1,11 @@
 #include "Task.h"
+#include "TaskCommon.h"
 
-Task::Task() : 
-    m_nID(-1),
-    m_sName(""),
+Task::Task(const std::string& sTaskName) : 
+    m_nID(time(nullptr)),
+    m_sName(sTaskName),
     m_eStatus(enStatus::enInvalid)
 {
-}
-
-void Task::setID(const int nId)
-{
-    m_nID = nId;
 }
 
 int Task::getID() const
@@ -35,4 +31,13 @@ void Task::setStatus(const enStatus eStatus)
 enStatus Task::getStatus() const
 {
     return m_eStatus;
+}
+
+std::ostream& operator<<(std::ostream& os, const Task& task)
+{
+    os  << "Task [ Name : " << task.getName() 
+        << ", ID : " << task.getID()
+        << ", Status: " << (task.getStatus()) << "]";
+
+    return os;
 }

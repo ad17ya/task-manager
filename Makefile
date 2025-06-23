@@ -12,8 +12,6 @@ SRCS = main.cpp \
 
 OBJS = $(SRCS:%.cpp=$(BUILD_DIR)/%.o)
 
-all: $(TARGET)
-
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 

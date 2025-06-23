@@ -13,7 +13,6 @@ private:
     enStatus m_eStatus;
 
 public:
-    void setID(const int nId);
     int getID() const;
 
     void setName(const std::string& sName);
@@ -22,8 +21,10 @@ public:
     void setStatus(const enStatus eStatus);
     enStatus getStatus() const;
 
-    Task();
+    Task(const std::string& sTaskName);
     ~Task() {};
+
+    friend std::ostream& operator<<(std::ostream os, const Task& task);
 };
 
 using HTask = std::shared_ptr<Task>;

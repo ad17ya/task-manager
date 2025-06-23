@@ -1,3 +1,5 @@
+#include <sstream>
+
 #include "Logger.h"
 
 Logger& Logger::getInstance()
@@ -27,20 +29,12 @@ std::string Logger::timestamp()
     return std::string(buff);
 }
 
-std::string Logger::levelToString(enLogLevel level)
+std::unordered_map<enLogLevel, std::string> levelToStringMap
 {
-    switch (level)
-    {
-    case enLogLevel::DEBUG:
-        return "DEBUG";
-    case enLogLevel::INFO:
-        return "INFO";
-    case enLogLevel::ERROR:
-        return "ERROR";
-    default:
-        return "UNKNOWN";
-    }
-}
+    {enLogLevel::DEBUG, "DEBUG"},
+    {enLogLevel::INFO, "INFO"},
+    {enLogLevel::ERROR, "ERROR"}
+};
 
 void Logger::log(enLogLevel level, const std::string& message, const char* file, int line)
 {
@@ -49,7 +43,7 @@ void Logger::log(enLogLevel level, const std::string& message, const char* file,
     std::lock_guard<std::mutex> lock(m_mLogMutex);
     std::ostream& out = m_oLogFile.is_open() ? m_oLogFile : std::cerr;
     out << "[" << timestamp() << "]"
-        << "[" << levelToString(level) << "]"
+        << "[" << levelToStringMap[level] << "]"
         << file << ":" << line << " - "
         << message << std::endl;
 }
